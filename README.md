@@ -8,6 +8,7 @@
 Code samples for each language's SDK are in the links below. Click to choose one（default **Python**）.
 |Python| [.NET](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/documentintelligence/Azure.AI.DocumentIntelligence)|[Java](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/documentintelligence/azure-ai-documentintelligence)| [JavaScript](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/documentintelligence/ai-document-intelligence-rest)|
 | --- | --- | --- | --- |
+
 Refer to this repo for the samples using the [latest SDK version](https://learn.microsoft.com/python/api/overview/azure/ai-documentintelligence-readme?view=azure-python-preview&preserve-view=true).
 These samples demonstrate common scenario operations with the Azure Document Intelligence client library.
 All of these samples need the endpoint to your Document Intelligence resource ([instructions on how to get endpoint][get-endpoint-instructions]), and your Document Intelligence API key ([instructions on how to get key][get-key-instructions]).

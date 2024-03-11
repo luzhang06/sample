@@ -5,7 +5,7 @@
 
 
 
-Code samples for each language's SDK can be found in the following links. Click the link below to choose one of them.
+Code samples for each language's SDK can be found in the following links. Click the link below to choose one of them（default **python**）.
 |Python| [.NET](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/documentintelligence/Azure.AI.DocumentIntelligence)|[Java](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/documentintelligence/azure-ai-documentintelligence)| [JavaScript](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/documentintelligence/ai-document-intelligence-rest)|
 | --- | --- | --- | --- |
 

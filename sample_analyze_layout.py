@@ -88,7 +88,7 @@ def analyze_layout():
     # To find more URLs of sample documents, visit the "How-to guides" link at the top.
     poller = document_intelligence_client.begin_analyze_document_from_url(
             "prebuilt-layout",formUrl
-        )        
+    )        
 
     # Analyze a local document：
     # Delete or comment out the part of "Analyze a document at a URL" above.

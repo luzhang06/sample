@@ -11,9 +11,8 @@ Code samples for each language's SDK are in the links below. Click to choose one
 | --- | --- | --- | --- |
 
 
-The contents of this guide applies to the samples using the [latest SDK version](https://learn.microsoft.com/python/api/overview/azure/ai-documentintelligence-readme?view=azure-python-preview&preserve-view=true) . Click to view earlier versions.
-|v4.0(Preview)| [v3.1(GA)]()| [v3.0 (GA)]()| [v2.1 (GA)]()|
-| --- | --- | --- | --- |
+>- The contents of this guide applies to the samples of vXXX(GA),  versions: [vXXX (GA)](), [vXXX (GA)]().
+
 ## Table of Contents
 
 - [Features](#features)
@@ -32,7 +31,7 @@ The contents of this guide applies to the samples using the [latest SDK version]
 Azure AI Document Intelligence is a cloud-based [Azure AI service](https://learn.microsoft.com/en-us/azure/ai-services/?view=doc-intel-4.0.0) that enables you to build intelligent document processing solutions. Massive amounts of data, spanning a wide variety of data types, are stored in forms and documents. Document Intelligence enables you to effectively manage the velocity at which data is collected and processed and is key to improved operations, informed data-driven decisions, and enlightened innovation.
 
 ## Prerequisites
-* Python 3.8 or later is required to use this package
+* Python XXX or later is required to use this package
 * You must have an [Azure subscription][azure_subscription]  and an [Azure Document Intelligence account][azure_document_intelligence_account] to run these samples.
 * All of these samples need the endpoint to your Document Intelligence resource ([instructions on how to get endpoint][get-endpoint-instructions]), and your Document Intelligence API key ([instructions on how to get key][get-key-instructions]).
 
@@ -41,7 +40,7 @@ Azure AI Document Intelligence is a cloud-based [Azure AI service](https://learn
 1. Install the Azure Document Intelligence client library for Python with [pip][pip]:
 
 ```bash
-pip install azure-ai-documentintelligence --pre
+pip install XXX
 ```
 
 2. Clone or download this sample repository
@@ -63,14 +62,9 @@ pip install azure-ai-documentintelligence --pre
 |[Add-on capabilities](~)   |Extract font property,formula,high resolution,barcode and key value pairs, detact language and query fields.|
 |[Custom model](~)   |Train a custom model and extract data from it. |
 
-> Click to view earlier versions:  [v3.1(GA)](), [v3.0 (GA)](), [v2.1 (GA)]().
+> Click to view earlier versions: [v3.2(GA)](), [v3.1 (GA)](), [v3.0 (GA)]().
 
-### Retrieval Augmented Generation (RAG) samples
-The Layout model provides various building blocks like tables, paragraphs, section headings, etc. that can enable different semantic chunking strategies of the document. With semantic chunking in Retrieval Augmented Generation (RAG), it will be more efficient in storage and retrieval, together with the benefits of improved relevance and enhanced interpretability. The following samples show how to use the Layout model to do semantic chunking and use the chunks to do RAG.
-|     File Name    |       Desription      | 
-| --- | --- |
-| [sample_rag_langchain.ipynb](Python/sample_rag_langchain.ipynb) | Sample RAG notebook using Azure AI Document Intelligence as document loader, MarkdownHeaderSplitter and Azure AI Search as retriever in Langchain |
-> Only available for preview version.
+
 ### Pre/post processing samples
 
 

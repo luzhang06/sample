@@ -83,30 +83,28 @@ def analyze_layout():
 
     document_intelligence_client = DocumentIntelligenceClient(endpoint=endpoint, credential=AzureKeyCredential(key))
     
-    # Analyze a local document：
-    # Enter the actual file path in the following "path_to_sample_documents" variable.
-    path_to_sample_documents = os.path.abspath(
-        os.path.join(
-            os.path.abspath(__file__),
-            "..",
-            ".<YOUR_FILE_NAME>", # Replace with your actual file name.
-        )
-    )
-    with open(path_to_sample_documents, "rb") as f:
-        poller = document_intelligence_client.begin_analyze_document(
-            "prebuilt-layout", analyze_request=f, content_type="application/octet-stream"
-        )
-        
     # Analyze a document at a URL：
-    # Delete or comment out the part of "Analyze a local document" above.
-    # Uncomment the following 5 lines of code. 
-    # formUrl = "<YOUR_ACTUAL_fORMURL>" # Replace with the actual formUrl.
-    # with open(formUrl, "rb") as f:
+    formUrl = "<YOUR_ACTUAL_fORMURL>" # Replace with the actual formUrl.
+    # To find more URLs of sample documents, visit the "How-to guides" link at the top.
+    poller = document_intelligence_client.begin_analyze_document_from_url(
+            "prebuilt-layout",formUrl
+        )        
+
+    # Analyze a local document：
+    # Delete or comment out the part of "Analyze a document at a URL" above.
+    # Uncomment the following codes. Enter the actual file path in the "path_to_sample_documents" variable.
+    # path_to_sample_documents = os.path.abspath(
+    #     os.path.join(
+    #         os.path.abspath(__file__),
+    #         "..",
+    #         ".<YOUR_FILE_NAME>", # Replace with your actual file name.
+    #     )
+    # )
+    # with open(path_to_sample_documents, "rb") as f:
     #     poller = document_intelligence_client.begin_analyze_document(
     #         "prebuilt-layout", analyze_request=f, content_type="application/octet-stream"
-    #     )        
-    result: AnalyzeResult = poller.result()
-    # To find more URLs of sample documents,visit the "How-to guides" link at the top. 
+    #     )
+    result: AnalyzeResult = poller.result() 
 
     # [START extract_layout]
     # Analyze whether document contains handwritten content.

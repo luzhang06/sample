@@ -54,15 +54,46 @@ pip install azure-ai-documentintelligence --pre
 4. Below are some sample code guidelines so that you can choose the sample according to your needs.
 
 ### Common samples
-|Topic model  |      Usage scenario     | 
-| --- | --- |
-|[Read](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/samples/sample_analyze_read.py)   |Extract printed and handwritten text. Such as  "Extract texts from a document".|  
-|[Layout](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/samples/sample_analyze_layout.py)   |Extract text, tables, selection marks and document structure. Such as "Analyze the document structure"，"Extract key-value pairs from a document".|
-|[Prebuilt](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/documentintelligence/azure-ai-documentintelligence/samples/sample_analyze_tax_us_w2.py)   |Extract data from an invoice/receipt/ID/... document.|
-|[Add-on capabilities](~)   |Extract font property,formula,high resolution,barcode and key value pairs, detact language and query fields.|
-|[Custom](~)   |Train a custom model and extract data from it. |
 
->- Click "Topic model" links above to find specific sample code based on usage scenarios.
+
+|**[Read model]()**|**Description**|
+|----------------|-------------|
+|[sample_analyze_read.py]() and [sample_analyze_read_async.py]()|Read document elements, such as pages and detected languages|
+
+|**[Layout model]()**|**Description**|
+|----------------|-------------|
+|[sample_analyze_layout.py]() and [sample_analyze_layout_async.py]()|Extract text, selection marks, and table structures in a document|
+
+|**[Prebuilt model]()**|**Description**|
+|----------------|-------------|
+|[sample_analyze_invoices.py]() and [sample_analyze_invoices_async.py]()|Analyze document text, selection marks, tables, and pre-trained fields and values pertaining to English invoices using a prebuilt model|
+|[sample_analyze_business_cards.py]() and [sample_analyze_business_cards_async.py]()|Analyze document text and pre-trained fields and values pertaining to English business cards using a prebuilt model|
+|[sample_analyze_identity_documents.py]() and [sample_analyze_identity_documents_async.py]()|Analyze document text and pre-trained fields and values pertaining to US driver licenses and international passports using a prebuilt model|
+|[sample_analyze_receipts.py]() and [sample_analyze_receipts_async.py]()|Analyze document text and pre-trained fields and values pertaining to English sales receipts using a prebuilt model|
+|[sample_analyze_tax_us_w2.py]() and [sample_analyze_tax_us_w2_async.py]()|Analyze document text and pre-trained fields and values pertaining to US tax W-2 forms using a prebuilt model|
+
+|**[Add-on capabilities]()**|**Description**|
+|----------------|-------------|
+|[sample_analyze_addon_barcodes.py]()and [sample_analyze_addon_barcodes async.py]()|Extract barcode|
+|[sample_analyze_addon_fonts.py]() and [sample_analyze_addon_fonts_async.py]()|Extract font property|
+|[sample_analyze_addon_formulas.py]() and [sample_analyze_addon_formulas_async.py]()|Extract formula|
+|[sample_analyze_addon_highres.py]() and [sample_analyze_addon_highres_async.py]()|Extract high resolution|
+|[sample_analyze_addon_languages.py]() and [sample_analyze_addon_languages_async.py]()|Detact language|
+|[sample_analyze_addon_query_fields.py]() and [sample_analyze_addon_query_fields_async.py]()|Query fields|
+
+
+
+
+
+|**[Custom model]()**|**Description**|
+|----------------|-------------|
+|[sample_custom template.py]()and [sample_custom template async.py]()| Extract data from static layouts.|
+|[sample_custom neural.py]() and [sample_custom neural_async.py]()|Extract data from mixed-type documents.|
+|[sample_custom composed .py]() and [sample_custom composed _async.py]()|Extract data using a collection of models.|
+|[sample_custom classifier.py]() and [sample_custom classifier_async.py]()|Identify designated document types (classes) before invoking an extraction model.|
+
+
+>- Click the link of the model name to reach the corresponding topic page for more details.
 >- Click  **[v3.1(GA)]()** to view earlier versions.
 
 ### Retrieval Augmented Generation (RAG) samples

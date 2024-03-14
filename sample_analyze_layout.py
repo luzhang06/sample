@@ -19,17 +19,15 @@ DESCRIPTION:
 
 PREREQUISITES:
     Necessary prerequisites are listed below.
-    To find more details,please click the following "How-to guides" link to visit the Documentation.
-    (https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/how-to-guides/use-sdk-rest-api?view=doc-intel-4.0.0&tabs=windows&pivots=programming-language-python) 
+    To find more details,please click the "How-to guides" link (https://aka.ms/AApjann) to visit the Documentation.
 
     -------Python and IDE------
     1) Python3.7 or latter (https://www.python.org/) .Your Python installation should include pip (https://pip.pypa.io/en/stable/).
     2) The latest version of Visual Studio Code (https://code.visualstudio.com/) or your preferred IDE. 
     
     ------Azure AI services or Document Intelligence resource------ 
-    Create a single-service (https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer)
-    or multi-service (https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne).
-    You can use the free pricing tier (F0) to try the service，and upgrade later to a paid tier for production.
+    Create a single-service (https://aka.ms/AApjhvn) or multi-service (https://aka.ms/AApjhvp).
+    You can use the free pricing tier (F0) to try the service,and upgrade later to a paid tier for production.
     
     ------Get the key and endpoint------
     1) After your resource deploys, select "Go to resource". 
@@ -37,20 +35,30 @@ PREREQUISITES:
     3) Copy one of the keys and the Endpoint for use in this sample. 
     
     ------Set your environment variables------
-    1) At a command prompt, run the following commands (for Windows)，and replace <yourKey> and <yourEndpoint> with the values from your resource in the Azure portal:
+    At a command prompt, run the following commands,and replace <yourKey> and <yourEndpoint> with the values from your resource in the Azure portal.
+    1) For Windows:
        setx DOCUMENTINTELLIGENCE_API_KEY <yourKey>
        setx DOCUMENTINTELLIGENCE_ENDPOINT <yourEndpoint>
-    2) Restart any running programs that read the environment variable.
-    If your system is macOS or Linux，please visit the "How-to guides" link at the top to find the detailed method.
+    You need to restart any running programs that read the environment variable.
+    2) For macOS:
+       export key=<yourKey>
+       export endpoint=<yourEndpoint>
+    Above is a temporary environment variable setting method that only lasts until you close the terminal session.
+    Visit: https://aka.ms/AApjao3 to find the way to set an environment variable permanently.
+    3) For Linux:
+       export DOCUMENTINTELLIGENCE_API_KEY=<yourKey>
+       export DOCUMENTINTELLIGENCE_ENDPOINT=<yourEndpoint>
+    Above is a temporary environment variable setting method that only lasts until you close the terminal session.
+    Visit: https://aka.ms/AApitr6 to find the way to set an environment variable permanently.
 
     ------Set up your programming environment------
-    At a command prompt，run the following code to install the Azure AI Document Intelligence client library for Python with pip:
+    At a command prompt,run the following code to install the Azure AI Document Intelligence client library for Python with pip:
     pip install azure-ai-documentintelligence==1.0.0b1
     
     ------Create your Python application------
     1) Create a new Python file called sample_analyze_layout.py in an editor or IDE.
     2) Open the sample_analyze_layout.py file,copy and paste this code sample into your application.
-    3) At a command prompt, use the following code to run the Python code： 
+    3) At a command prompt, use the following code to run the Python code: 
        python sample_analyze_layout.py
 """
 
@@ -83,31 +91,29 @@ def analyze_layout():
 
     document_intelligence_client = DocumentIntelligenceClient(endpoint=endpoint, credential=AzureKeyCredential(key))
     
-    # Analyze a local document：
-    # Enter the actual file path in the following "path_to_sample_documents" variable.
-    path_to_sample_documents = os.path.abspath(
-        os.path.join(
-            os.path.abspath(__file__),
-            "..",
-            ".<YOUR_FILE_NAME>", # Replace with your actual file name.
-        )
-    )
-    with open(path_to_sample_documents, "rb") as f:
-        poller = document_intelligence_client.begin_analyze_document(
-            "prebuilt-layout", analyze_request=f, content_type="application/octet-stream"
-        )
-        
     # Analyze a document at a URL：
-    # Delete or comment out the part of "Analyze a local document" above.
-    # Uncomment the following 5 lines of code. 
-    # formUrl = "<YOUR_ACTUAL_fORMURL>" # Replace with the actual formUrl.
-    # with open(formUrl, "rb") as f:
+    formUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-layout.pdf"
+    # Replace with the your actual formUrl. Visit: https://aka.ms/AApj4dy to find more URLs of sample documents.
+    poller = document_intelligence_client.begin_analyze_document_from_url(
+        "prebuilt-layout",formUrl
+    )        
+    
+    # Analyze a local document：
+    # Delete or comment out the part of "Analyze a document at a URL" above.
+    # Uncomment the following codes. Enter the actual file path in the "path_to_sample_documents" variable.
+    # path_to_sample_documents = os.path.abspath(
+    #     os.path.join(
+    #         os.path.abspath(__file__),
+    #         "..",
+    #         ".<YOUR_FILE_NAME>", # Replace with your actual file name.
+    #     )
+    # )
+    # with open(path_to_sample_documents, "rb") as f:
     #     poller = document_intelligence_client.begin_analyze_document(
     #         "prebuilt-layout", analyze_request=f, content_type="application/octet-stream"
-    #     )        
-    result: AnalyzeResult = poller.result()
-    # To find more URLs of sample documents,visit the "How-to guides" link at the top. 
-
+    #     )
+    result: AnalyzeResult = poller.result()    
+    
     # [START extract_layout]
     # Analyze whether document contains handwritten content.
     if result.styles and any([style.is_handwritten for style in result.styles]):

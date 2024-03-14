@@ -19,15 +19,15 @@ DESCRIPTION:
 
 PREREQUISITES:
     Necessary prerequisites are listed below.
-    To find more details,please click the "How-to guides" link (https://aka.ms/AApjann) to visit the Documentation.
+    To find more details, please click the "How-to guides" link (https://aka.ms/AApjann) to visit the Documentation.
 
     -------Python and IDE------
-    1) Python3.7 or latter (https://www.python.org/) .Your Python installation should include pip (https://pip.pypa.io/en/stable/).
+    1) Python3.7 or latter (https://www.python.org/) . Your Python installation should include pip (https://pip.pypa.io/en/stable/).
     2) The latest version of Visual Studio Code (https://code.visualstudio.com/) or your preferred IDE. 
     
     ------Azure AI services or Document Intelligence resource------ 
     Create a single-service (https://aka.ms/AApjhvn) or multi-service (https://aka.ms/AApjhvp).
-    You can use the free pricing tier (F0) to try the service,and upgrade later to a paid tier for production.
+    You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.
     
     ------Get the key and endpoint------
     1) After your resource deploys, select "Go to resource". 
@@ -35,7 +35,7 @@ PREREQUISITES:
     3) Copy one of the keys and the Endpoint for use in this sample. 
     
     ------Set your environment variables------
-    At a command prompt, run the following commands,and replace <yourKey> and <yourEndpoint> with the values from your resource in the Azure portal.
+    At a command prompt, run the following commands, and replace <yourKey> and <yourEndpoint> with the values from your resource in the Azure portal.
     1) For Windows:
        setx DOCUMENTINTELLIGENCE_API_KEY <yourKey>
        setx DOCUMENTINTELLIGENCE_ENDPOINT <yourEndpoint>
@@ -44,12 +44,12 @@ PREREQUISITES:
        export key=<yourKey>
        export endpoint=<yourEndpoint>
     Above is a temporary environment variable setting method that only lasts until you close the terminal session.
-    Visit: https://aka.ms/AApjao3 to find the way to set an environment variable permanently.
+    To find the way to set an environment variable permanently, visit: https://aka.ms/AApjao3
     3) For Linux:
        export DOCUMENTINTELLIGENCE_API_KEY=<yourKey>
        export DOCUMENTINTELLIGENCE_ENDPOINT=<yourEndpoint>
     Above is a temporary environment variable setting method that only lasts until you close the terminal session.
-    Visit: https://aka.ms/AApitr6 to find the way to set an environment variable permanently.
+    To find the way to set an environment variable permanently, visit: https://aka.ms/AApitr6
 
     ------Set up your programming environment------
     At a command prompt,run the following code to install the Azure AI Document Intelligence client library for Python with pip:
@@ -93,14 +93,14 @@ def analyze_layout():
     
     # Analyze a document at a URL：
     formUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-layout.pdf"
-    # Replace with the your actual formUrl. Visit: https://aka.ms/AApj4dy to find more URLs of sample documents.
+    # Replace with the your actual formUrl. To find more URLs of sample documents，visit: https://aka.ms/AApj4dy 
     poller = document_intelligence_client.begin_analyze_document_from_url(
         "prebuilt-layout",formUrl
     )        
     
     # Analyze a local document：
     # Delete or comment out the part of "Analyze a document at a URL" above.
-    # Uncomment the following codes. Enter the actual file path in the "path_to_sample_documents" variable.
+    # Uncomment the following codes. Enter the actual file path in "path_to_sample_documents" variable.
     # path_to_sample_documents = os.path.abspath(
     #     os.path.join(
     #         os.path.abspath(__file__),

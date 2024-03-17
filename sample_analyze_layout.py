@@ -18,38 +18,37 @@ DESCRIPTION:
     checkbox and its text. See sample_build_model.py for more information.
 
 PREREQUISITES:
-    Necessary prerequisites are listed below.
-    To find more details, please click the "How-to guides" link (https://aka.ms/how-to-guide) to visit the Documentation.
+    The following prerequisites are necessary to run the code. For more details, please visit the "How-to guides" link (https://aka.ms/how-to-guide).
 
     -------Python and IDE------
-    1) Python3.7 or latter (https://www.python.org/) . Your Python installation should include pip (https://pip.pypa.io/en/stable/).
-    2) The latest version of Visual Studio Code (https://code.visualstudio.com/) or your preferred IDE. 
+    1) Install Python 3.7 or later (https://www.python.org/), which should include pip (https://pip.pypa.io/en/stable/).
+    2) Install the latest version of Visual Studio Code (https://code.visualstudio.com/) or your preferred IDE. 
     
     ------Azure AI services or Document Intelligence resource------ 
-    Create a single-service (https://aka.ms/single-service) or multi-service (https://aka.ms/multi-service).
-    You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.
+    Create a single-service (https://aka.ms/single-service) or multi-service (https://aka.ms/multi-service) resource.
+    You can use the free pricing tier (F0) to try the service and upgrade to a paid tier for production later.
     
     ------Get the key and endpoint------
-    1) After your resource deploys, select "Go to resource". 
+    1) After your resource is deployed, select "Go to resource". 
     2) In the left navigation menu, select "Keys and Endpoint". 
     3) Copy one of the keys and the Endpoint for use in this sample. 
     
     ------Set your environment variables------
-    At a command prompt, run the following commands, and replace <yourKey> and <yourEndpoint> with the values from your resource in the Azure portal.
+    At a command prompt, run the following commands, replacing <yourKey> and <yourEndpoint> with the values from your resource in the Azure portal.
     1) For Windows:
        setx DOCUMENTINTELLIGENCE_API_KEY <yourKey>
        setx DOCUMENTINTELLIGENCE_ENDPOINT <yourEndpoint>
-    You need to restart any running programs that read the environment variable.
+       • You need to restart any running programs that read the environment variable.
     2) For macOS:
        export key=<yourKey>
        export endpoint=<yourEndpoint>
-    Above is a temporary environment variable setting method that only lasts until you close the terminal session.
-    To find the way to set an environment variable permanently, visit: https://aka.ms/for-macos
+       • This is a temporary environment variable setting method that only lasts until you close the terminal session. 
+       • To set an environment variable permanently, visit: https://aka.ms/for-macos
     3) For Linux:
        export DOCUMENTINTELLIGENCE_API_KEY=<yourKey>
        export DOCUMENTINTELLIGENCE_ENDPOINT=<yourEndpoint>
-    Above is a temporary environment variable setting method that only lasts until you close the terminal session.
-    To find the way to set an environment variable permanently, visit: https://aka.ms/for-linux
+       • This is a temporary environment variable setting method that only lasts until you close the terminal session. 
+       • To set an environment variable permanently, visit: https://aka.ms/for-linux
 
     ------Set up your programming environment------
     At a command prompt,run the following code to install the Azure AI Document Intelligence client library for Python with pip:
@@ -57,7 +56,7 @@ PREREQUISITES:
     
     ------Create your Python application------
     1) Create a new Python file called sample_analyze_layout.py in an editor or IDE.
-    2) Open the sample_analyze_layout.py file,copy and paste this code sample into your application.
+    2) Open the sample_analyze_layout.py file and insert the provided code sample into your application.
     3) At a command prompt, use the following code to run the Python code: 
        python sample_analyze_layout.py
 """
@@ -73,7 +72,7 @@ def get_words(page, line):
     return result
 
 
-# To learn the concept of "span" below, visit: https://aka.ms/spans 
+# To learn the concept of "span" in the following content, visit: https://aka.ms/spans 
 def _in_span(word, spans):
     for span in spans:
         if word.span.offset >= span.offset and (word.span.offset + word.span.length) <= (span.offset + span.length):
@@ -94,7 +93,7 @@ def analyze_layout():
     
     # Analyze a document at a URL：
     formUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-layout.pdf"
-    # Replace with the your actual formUrl. To find more URLs of sample documents，visit: https://aka.ms/AApj4dy 
+    # Replace with your actual formUrl. To find more URLs of sample documents，visit: https://aka.ms/AApj4dy 
     poller = document_intelligence_client.begin_analyze_document(
         "prebuilt-layout",
         AnalyzeDocumentRequest(url_source=formUrl)
@@ -102,7 +101,7 @@ def analyze_layout():
     
     # Analyze a local document：
     # Delete or comment out the part of "Analyze a document at a URL" above.
-    # Uncomment the following codes. Enter the actual file path in "path_to_sample_documents" variable.
+    # Remove the comment markers (#) from the following lines. Then, replace the variable "path_to_sample_documents" with the actual file path where your documents are located.
     # path_to_sample_documents = os.path.abspath(
     #     os.path.join(
     #         os.path.abspath(__file__),
@@ -117,14 +116,14 @@ def analyze_layout():
     result: AnalyzeResult = poller.result()    
     
     # [START extract_layout]
-    # Analyze whether document contains handwritten content.
+    # Analyze whether the document contains handwritten content.
     if result.styles and any([style.is_handwritten for style in result.styles]):
         print("Document contains handwritten content")
     else:
         print("Document does not contain handwritten content")
 
     # Analyze pages.
-    # To learn the concept of "bounding polygon" below, visit: https://aka.ms/bounding-region 
+    # To learn the concept of "bounding polygon" in the following content, visit: https://aka.ms/bounding-region 
     for page in result.pages:
         print(f"----Analyzing layout from page #{page.page_number}----")
         print(f"Page has width: {page.width} and height: {page.height}, measured with unit: {page.unit}")

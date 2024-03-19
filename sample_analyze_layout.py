@@ -97,7 +97,7 @@ def analyze_layout():
     
     # # If analyzing a local document, remove the comment markers (#) at the beginning of these 8 lines.
     # # Delete or comment out the part of "Analyze a document at a URL" above.
-    # # replacing <path to your sample file>  with your actual file path.
+    # # Replace <path to your sample file>  with your actual file path.
     # path_to_sample_document = "<path to your sample file>"
     # with open(path_to_sample_document, "rb") as f:
     #     poller = document_intelligence_client.begin_analyze_document(

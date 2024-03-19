@@ -10,15 +10,11 @@
 FILE: sample_analyze_layout.py
 
 DESCRIPTION:
-    This sample demonstrates how to extract text, tables, selection marks, and layout information from a document
+    This sample demonstrates how to extract text, tables, figures, selection marks and document structure (e.g., sections) information from a document
     given through a file.
-    
-    Note that selection marks returned from begin_analyze_document(model_id="prebuilt-layout") do not return the text
-    associated with the checkbox. For the API to return this information, build a custom model to analyze the
-    checkbox and its text. See sample_build_model.py for more information.
 
 PREREQUISITES:
-    The following prerequisites are necessary to run the code. For more details, please visit the "How-to guides" link (https://aka.ms/how-to-guide).
+    The following prerequisites are necessary to run the code. For more details, please visit the "How-to guides" link: https://aka.ms/how-to-guide
 
     -------Python and IDE------
     1) Install Python 3.7 or later (https://www.python.org/), which should include pip (https://pip.pypa.io/en/stable/).
@@ -43,16 +39,16 @@ PREREQUISITES:
        export key=<yourKey>
        export endpoint=<yourEndpoint>
        • This is a temporary environment variable setting method that only lasts until you close the terminal session. 
-       • To set an environment variable permanently, visit: https://aka.ms/for-macos
+       • To set an environment variable permanently, visit: https://aka.ms/set-environment-variables-for-macOS
     3) For Linux:
        export DOCUMENTINTELLIGENCE_API_KEY=<yourKey>
        export DOCUMENTINTELLIGENCE_ENDPOINT=<yourEndpoint>
        • This is a temporary environment variable setting method that only lasts until you close the terminal session. 
-       • To set an environment variable permanently, visit: https://aka.ms/for-linux
-
+       • To set an environment variable permanently, visit: https://aka.ms/set-environment-variables-for-Linux
+       
     ------Set up your programming environment------
     At a command prompt,run the following code to install the Azure AI Document Intelligence client library for Python with pip:
-    pip install azure-ai-documentintelligence==1.0.0b1
+    pip install azure-ai-documentintelligence==1.0.0b2
     
     ------Create your Python application------
     1) Create a new Python file called "sample_analyze_layout.py" in an editor or IDE.
@@ -72,7 +68,7 @@ def get_words(page, line):
     return result
 
 
-# To learn the concept of "span" in the following content, visit: https://aka.ms/spans 
+# To learn the detailed concept of "span" in the following codes, visit: https://aka.ms/spans 
 def _in_span(word, spans):
     for span in spans:
         if word.span.offset >= span.offset and (word.span.offset + word.span.length) <= (span.offset + span.length):
@@ -93,23 +89,17 @@ def analyze_layout():
     
     # Analyze a document at a URL：
     formUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-layout.pdf"
-    # Replace with your actual formUrl. To find more URLs of sample documents，visit: https://aka.ms/AApj4dy 
+    # Replace with your actual formUrl. To find more URLs of sample documents，visit: https://aka.ms/more-URLs 
     poller = document_intelligence_client.begin_analyze_document(
         "prebuilt-layout",
         AnalyzeDocumentRequest(url_source=formUrl)
     )       
     
-    # Analyze a local document：
-    # Delete or comment out the part of "Analyze a document at a URL" above.
-    # Remove the comment markers (#) from the following lines. Then, replace the variable "path_to_sample_documents" with the actual file path where your documents are located.
-    # path_to_sample_documents = os.path.abspath(
-    #     os.path.join(
-    #         os.path.abspath(__file__),
-    #         "..",
-    #         ".<YOUR_FILE_NAME>",
-    #     )
-    # )
-    # with open(path_to_sample_documents, "rb") as f:
+    # # If analyzing a local document, remove the comment markers (#) at the beginning of these 8 lines.
+    # # Delete or comment out the part of "Analyze a document at a URL" above.
+    # # replacing <path to your sample file>  with your actual file path.
+    # path_to_sample_document = "<path to your sample file>"
+    # with open(path_to_sample_document, "rb") as f:
     #     poller = document_intelligence_client.begin_analyze_document(
     #         "prebuilt-layout", analyze_request=f, content_type="application/octet-stream"
     #     )
@@ -123,7 +113,7 @@ def analyze_layout():
         print("Document does not contain handwritten content")
 
     # Analyze pages.
-    # To learn the concept of "bounding polygon" in the following content, visit: https://aka.ms/bounding-region 
+    # To learn the detailed concept of "bounding polygon" in the following content, visit: https://aka.ms/bounding-region 
     for page in result.pages:
         print(f"----Analyzing layout from page #{page.page_number}----")
         print(f"Page has width: {page.width} and height: {page.height}, measured with unit: {page.unit}")
@@ -148,7 +138,9 @@ def analyze_layout():
                     f"Selection mark is '{selection_mark.state}' within bounding polygon "
                     f"'{selection_mark.polygon}' and has a confidence of {selection_mark.confidence}"
                 )
-
+        # Note that selection marks returned from begin_analyze_document(model_id="prebuilt-layout") do not return the text associated with the checkbox. 
+        # For the API to return this information, build a custom model to analyze the checkbox and its text. 
+                
     # Analyze tables.
     if result.tables:
         for table_idx, table in enumerate(result.tables):
@@ -164,6 +156,7 @@ def analyze_layout():
                         print(f"...content on page {region.page_number} is within bounding polygon '{region.polygon}'")
 
     # Analyze figures.
+    # To learn the detailed concept of "figures" in the following content, visit: https://aka.ms/figures 
     if result.figures:                    
         for figures_idx,figures in enumerate(result.figures):
             print(f"Figure # {figures_idx} has the following spans:{figures.spans}")
@@ -196,3 +189,7 @@ if __name__ == "__main__":
             print(f"Uh-oh! Seems there was an invalid request: {error}")
         # Raise the error again
         raise
+
+# Next steps：
+# Learn more about Layout model: https://aka.ms/di-layout
+# Find more sample code: https://aka.ms/doc-intelligence-samples

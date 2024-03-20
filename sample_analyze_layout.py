@@ -48,7 +48,7 @@ PREREQUISITES:
        
     ------Set up your programming environment------
     At a command prompt,run the following code to install the Azure AI Document Intelligence client library for Python with pip:
-    pip install azure-ai-documentintelligence==1.0.0b2
+    pip install azure-ai-documentintelligence --pre
     
     ------Create your Python application------
     1) Create a new Python file called "sample_analyze_layout.py" in an editor or IDE.
@@ -139,7 +139,8 @@ def analyze_layout():
                     f"'{selection_mark.polygon}' and has a confidence of {selection_mark.confidence}"
                 )
         # Note that selection marks returned from begin_analyze_document(model_id="prebuilt-layout") do not return the text associated with the checkbox. 
-        # For the API to return this information, build a custom model to analyze the checkbox and its text. 
+        # For the API to return this information, build a custom model to analyze the checkbox and its text.
+        # For detailed steps, visit: https://aka.ms/train-your-custom-model
                 
     # Analyze tables.
     if result.tables:

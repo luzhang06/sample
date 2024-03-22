@@ -89,7 +89,9 @@ def analyze_layout():
     
     # Analyze a document at a URL：
     formUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-layout.pdf"
-    # Replace with your actual formUrl. To find more URLs of sample documents，visit: https://aka.ms/more-URLs 
+    # Replace with your actual formUrl:
+    # If you use the URL of a public website, to find more URLs, please visit: https://aka.ms/more-URLs 
+    # If you analyze a document in Blob Storage, you need to generate Public SAS URL, please visit: https://aka.ms/create-sas-tokens
     poller = document_intelligence_client.begin_analyze_document(
         "prebuilt-layout",
         AnalyzeDocumentRequest(url_source=formUrl)

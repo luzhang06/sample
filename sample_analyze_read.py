@@ -78,7 +78,7 @@ def _in_span(word, spans):
 def analyze_read():
     from azure.core.credentials import AzureKeyCredential
     from azure.ai.documentintelligence import DocumentIntelligenceClient
-    from azure.ai.documentintelligence.models import DocumentAnalysisFeature, AnalyzeResult,AnalyzeDocumentRequest
+    from azure.ai.documentintelligence.models import DocumentAnalysisFeature, AnalyzeResult, AnalyzeDocumentRequest
 
     # For how to obtain the endpoint and key, please see PREREQUISITES above.
     endpoint = os.environ["DOCUMENTINTELLIGENCE_ENDPOINT"]
@@ -108,12 +108,14 @@ def analyze_read():
     #     )
     result: AnalyzeResult = poller.result()
     
-    # [START analyze_document]
+    # [START analyze_read]
+    # Detect languages.
     print("----Languages detected in the document----")
     if result.languages is not None:
         for language in result.languages:
             print(f"Language code: '{language.locale}' with confidence {language.confidence}")
 
+    # Detect styles.
     print("----Styles detected in the document----")
     if result.styles:
         for style in result.styles:
@@ -124,13 +126,13 @@ def analyze_read():
                 print(f"The document contains '{style.font_style}' font style, applied to the following text: ")
                 print(",".join([result.content[span.offset : span.offset + span.length] for span in style.spans]))
     
+    # To learn the detailed concept of "bounding polygon" in the following content, visit: https://aka.ms/bounding-region
     # Analyze pages.
     for page in result.pages:
         print(f"----Analyzing document from page #{page.page_number}----")
         print(f"Page has width: {page.width} and height: {page.height}, measured with unit: {page.unit}")
 
         # Analyze lines.
-        # To learn the detailed concept of "bounding polygon" in the following content, visit: https://aka.ms/bounding-region
         if page.lines:
             for line_idx, line in enumerate(page.lines):
                 words = get_words(page, line)
@@ -149,7 +151,7 @@ def analyze_read():
                     f"...Selection mark is '{selection_mark.state}' within bounding polygon "
                     f"'{selection_mark.polygon}' and has a confidence of {selection_mark.confidence}"
                 )
-        # Note that selection marks returned from begin_analyze_document(model_id="prebuilt-layout") do not return the text associated with the checkbox. 
+        # Note that selection marks returned from begin_analyze_document(model_id="prebuilt-read") do not return the text associated with the checkbox. 
         # For the API to return this information, build a custom model to analyze the checkbox and its text. For detailed steps, visit: https://aka.ms/train-your-custom-model
         
     # Analyze paragraphs.
@@ -160,7 +162,7 @@ def analyze_read():
             print(f"...with content: '{paragraph.content}'")
 
     print("----------------------------------------")
-    # [END analyze_document]
+    # [END analyze_read]
 
 if __name__ == "__main__":
     from azure.core.exceptions import HttpResponseError
@@ -184,3 +186,7 @@ if __name__ == "__main__":
             print(f"Uh-oh! Seems there was an invalid request: {error}")
         # Raise the error again
         raise
+
+# Next steps:
+# Learn more about Layout model: https://aka.ms/di-read
+# Find more sample code: https://aka.ms/doc-intelligence-samples

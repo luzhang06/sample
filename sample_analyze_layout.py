@@ -87,7 +87,7 @@ def analyze_layout():
 
     document_intelligence_client = DocumentIntelligenceClient(endpoint=endpoint, credential=AzureKeyCredential(key))
     
-    # Analyze a document at a URL：
+    # Analyze a document at a URL:
     formUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-layout.pdf"
     # Replace with your actual formUrl:
     # If you use the URL of a public website, to find more URLs, please visit: https://aka.ms/more-URLs 
@@ -192,6 +192,6 @@ if __name__ == "__main__":
         # Raise the error again
         raise
 
-# Next steps：
+# Next steps:
 # Learn more about Layout model: https://aka.ms/di-layout
 # Find more sample code: https://aka.ms/doc-intelligence-samples

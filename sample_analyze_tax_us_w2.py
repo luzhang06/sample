@@ -97,8 +97,8 @@ def analyze_tax_us_w2():
     #     )
     w2s: AnalyzeResult = poller.result()
 
-    # [START analyze_w2]
-    # To find more predefined schemas, please refer to: https://aka.ms/concept-tax-document
+    # [START analyze_tax_us_w2]
+    # To find more predefined schemas, please refer to: https://aka.ms/azsdk/documentintelligence/taxusw2fieldschema
     if w2s.documents:
         for idx, w2 in enumerate(w2s.documents):
             print(f"--------Analyzing US Tax W-2 Form #{idx + 1}--------")
@@ -293,7 +293,7 @@ def analyze_tax_us_w2():
                                 f"...Locality name: {locality_name.get('valueString')} has confidence: "
                                 f"{locality_name.confidence}"
                             )
-    # [END analyze_w2]
+    # [END analyze_tax_us_w2]
 
 
 if __name__ == "__main__":
@@ -318,3 +318,7 @@ if __name__ == "__main__":
             print(f"Uh-oh! Seems there was an invalid request: {error}")
         # Raise the error again
         raise
+
+# Next steps:
+# Learn more about US W2 Tax model: https://aka.ms/concept-tax-document
+# Find more sample code: https://aka.ms/doc-intelligence-samples

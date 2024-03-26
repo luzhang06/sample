@@ -12,9 +12,6 @@ FILE: sample_analyze_identity_documents.py
 DESCRIPTION:
     This sample demonstrates how to analyze an identity document.
 
-    See fields found on identity documents here:
-    https://aka.ms/azsdk/documentintelligence/iddocumentfieldschema
-
 PREREQUISITES:
     The following prerequisites are necessary to run the code. For more details, please visit the "How-to guides" link: https://aka.ms/how-to-guide
 
@@ -93,8 +90,8 @@ def analyze_identity_documents():
     #     )
     id_documents: AnalyzeResult = poller.result()
 
-    # [START analyze_idDocument]
-    # To find more predefined schemas, please refer to: https://aka.ms/concept-id-document
+    # [START analyze_idDocuments]
+    # To find more schemas, please refer to:  https://aka.ms/azsdk/documentintelligence/iddocumentfieldschema
     if id_documents.documents:
         for idx, id_document in enumerate(id_documents.documents):
             print(f"--------Analyzing ID document #{idx + 1}--------")
@@ -130,7 +127,7 @@ def analyze_identity_documents():
                 region = id_document.fields.get("Region")
                 if region:
                     print(f"Region: {region.get('valueString')} has confidence: {region.confidence}")
-    # [END analyze_idDocument]
+    # [END analyze_idDocuments]
 
 if __name__ == "__main__":
     from azure.core.exceptions import HttpResponseError
@@ -154,3 +151,7 @@ if __name__ == "__main__":
             print(f"Uh-oh! Seems there was an invalid request: {error}")
         # Raise the error again
         raise
+
+# Next steps:
+# Learn more about ID document model: https://aka.ms/concept-id-document
+# Find more sample code: https://aka.ms/doc-intelligence-samples

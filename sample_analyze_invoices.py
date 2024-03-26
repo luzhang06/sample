@@ -75,7 +75,7 @@ def analyze_invoice():
 
     # Analyze a document at a URL:
     invoiceUrl = "https://github.com/Azure-Samples/cognitive-services-REST-api-samples/raw/master/curl/form-recognizer/rest-api/invoice.pdf"
-    # Replace with your actual formUrl:
+    # Replace with your actual invoiceUrl:
     # If you use the URL of a public website, to find more URLs, please visit: https://aka.ms/more-URLs 
     # If you analyze a document in Blob Storage, you need to generate Public SAS URL, please visit: https://aka.ms/create-sas-tokens
     poller = document_intelligence_client.begin_analyze_document(
@@ -86,8 +86,8 @@ def analyze_invoice():
     # # If analyzing a local document, remove the comment markers (#) at the beginning of these 8 lines.
     # # Delete or comment out the part of "Analyze a document at a URL" above.
     # # Replace <path to your sample file>  with your actual file path.
-    # path_to_sample_documents = "<path to your sample file>"
-    # with open(path_to_sample_documents, "rb") as f:
+    # path_to_sample_document = "<path to your sample file>"
+    # with open(path_to_sample_document, "rb") as f:
     #     poller = document_intelligence_client.begin_analyze_document(
     #         "prebuilt-invoice", analyze_request=f, locale="en-US", content_type="application/octet-stream"
     #     )

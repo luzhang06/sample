@@ -99,7 +99,7 @@ def analyze_read():
     # # Delete or comment out the part of "Analyze a document at a URL" above.
     # # Replace <path to your sample file>  with your actual file path.
     # path_to_sample_document = "<path to your sample file>"
-    # with open(path_to_sample_documents, "rb") as f:
+    # with open(path_to_sample_document, "rb") as f:
     #     poller = document_intelligence_client.begin_analyze_document(
     #         "prebuilt-read",
     #         analyze_request=f,

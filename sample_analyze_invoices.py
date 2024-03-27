@@ -12,6 +12,9 @@ FILE: sample_analyze_invoices.py
 DESCRIPTION:
     This sample demonstrates how to analyze invoices.
 
+    See fields found on a invoice here:
+    https://aka.ms/invoice-field-schema
+
 PREREQUISITES:
     The following prerequisites are necessary to run the code. For more details, please visit the "How-to guides" link: https://aka.ms/how-to-guide
 
@@ -91,7 +94,6 @@ def analyze_invoice():
     invoices: AnalyzeResult = poller.result()   
 
     # [START analyze_invoices]
-    # To find more schemas, please refer to: https://aka.ms/azsdk/documentintelligence/invoicefieldschema
     if invoices.documents:
         for idx, invoice in enumerate(invoices.documents):
             print(f"--------Analyzing invoice #{idx + 1}--------")

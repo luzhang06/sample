@@ -13,6 +13,9 @@ DESCRIPTION:
     This sample demonstrates how to analyze and extract common fields from receipts,
     using a pre-trained receipt model.
 
+    See fields found on a receipt here:
+    https://aka.ms/receipt-field-schema
+
 PREREQUISITES:
     The following prerequisites are necessary to run the code. For more details, please visit the "How-to guides" link: https://aka.ms/how-to-guide
 
@@ -96,7 +99,6 @@ def analyze_receipts():
     receipts: AnalyzeResult = poller.result()
 
     # [START analyze_receipts]
-    # To find more schemas, please refer to: https://aka.ms/azsdk/documentintelligence/receiptfieldschema
     if receipts.documents:
         for idx, receipt in enumerate(receipts.documents):
             print(f"--------Analysis of receipt #{idx + 1}--------")

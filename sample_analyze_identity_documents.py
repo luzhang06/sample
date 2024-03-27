@@ -12,6 +12,9 @@ FILE: sample_analyze_identity_documents.py
 DESCRIPTION:
     This sample demonstrates how to analyze an identity document.
 
+    See fields found on identity documents here:
+    https://aka.ms/iddocument-field-schema
+
 PREREQUISITES:
     The following prerequisites are necessary to run the code. For more details, please visit the "How-to guides" link: https://aka.ms/how-to-guide
 
@@ -91,7 +94,6 @@ def analyze_identity_documents():
     id_documents: AnalyzeResult = poller.result()
 
     # [START analyze_idDocuments]
-    # To find more schemas, please refer to:  https://aka.ms/azsdk/documentintelligence/iddocumentfieldschema
     if id_documents.documents:
         for idx, id_document in enumerate(id_documents.documents):
             print(f"--------Analyzing ID document #{idx + 1}--------")

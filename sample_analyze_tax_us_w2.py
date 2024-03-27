@@ -13,7 +13,7 @@ DESCRIPTION:
     This sample demonstrates how to analyze US W-2 tax forms.
 
     See fields found on a US W-2 tax form here:
-    https://aka.ms/azsdk/documentintelligence/taxusw2fieldschema
+    https://aka.ms/w-2-field-schema
 
 PREREQUISITES:
     The following prerequisites are necessary to run the code. For more details, please visit the "How-to guides" link: https://aka.ms/how-to-guide
@@ -98,7 +98,6 @@ def analyze_tax_us_w2():
     w2s: AnalyzeResult = poller.result()
 
     # [START analyze_tax_us_w2]
-    # To find more predefined schemas, please refer to: https://aka.ms/azsdk/documentintelligence/taxusw2fieldschema
     if w2s.documents:
         for idx, w2 in enumerate(w2s.documents):
             print(f"--------Analyzing US Tax W-2 Form #{idx + 1}--------")

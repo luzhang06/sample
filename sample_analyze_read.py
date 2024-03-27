@@ -95,7 +95,7 @@ def analyze_read():
         "prebuilt-read",
         AnalyzeDocumentRequest(url_source=formUrl)
     )       
-    # # If analyzing a local document, remove the comment markers (#) at the beginning of these 11 lines.
+    # # If analyzing a local document, remove the comment markers (#) at the beginning of these 12 lines.
     # # Delete or comment out the part of "Analyze a document at a URL" above.
     # # Replace <path to your sample file>  with your actual file path.
     # path_to_sample_document = "<path to your sample file>"
@@ -103,7 +103,8 @@ def analyze_read():
     #     poller = document_intelligence_client.begin_analyze_document(
     #         "prebuilt-read",
     #         analyze_request=f,
-    #         features=[DocumentAnalysisFeature.STYLE_FONT],
+    # #         features=[DocumentAnalysisFeature.STYLE_FONT, DocumentAnalysisFeature.LANGUAGES] 
+    # # If you analyze a document for style and language, remove the comment marker (#) at the beginning of the line above.
     #         content_type="application/octet-stream",
     #     )
     result: AnalyzeResult = poller.result()
@@ -143,16 +144,6 @@ def analyze_read():
                 # Analyze words.
                 for word in words:
                     print(f"......Word '{word.content}' has a confidence of {word.confidence}")
-
-        # Analyze selection marks.
-        if page.selection_marks:
-            for selection_mark in page.selection_marks:
-                print(
-                    f"...Selection mark is '{selection_mark.state}' within bounding polygon "
-                    f"'{selection_mark.polygon}' and has a confidence of {selection_mark.confidence}"
-                )
-        # Note that selection marks returned from begin_analyze_document(model_id="prebuilt-read") do not return the text associated with the checkbox. 
-        # For the API to return this information, build a custom model to analyze the checkbox and its text. For detailed steps, visit: https://aka.ms/train-your-custom-model
         
     # Analyze paragraphs.
     if result.paragraphs:

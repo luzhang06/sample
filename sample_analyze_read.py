@@ -95,7 +95,8 @@ def analyze_read():
         "prebuilt-read",
         AnalyzeDocumentRequest(url_source=formUrl)
     )       
-    # # If analyzing a local document, remove the comment markers (#) at the beginning of these 12 lines.
+    
+    # # If analyzing a local document, remove the comment markers (#) at the beginning of these 11 lines.
     # # Delete or comment out the part of "Analyze a document at a URL" above.
     # # Replace <path to your sample file>  with your actual file path.
     # path_to_sample_document = "<path to your sample file>"
@@ -104,7 +105,6 @@ def analyze_read():
     #         "prebuilt-read",
     #         analyze_request=f,
     #         features=[DocumentAnalysisFeature.LANGUAGES],
-    # # If you analyze a document for style and language, remove the comment marker (#) at the beginning of the line above.
     #         content_type="application/octet-stream",
     #     )
     result: AnalyzeResult = poller.result()
@@ -138,7 +138,7 @@ def analyze_read():
     if result.paragraphs:
         print(f"----Detected #{len(result.paragraphs)} paragraphs in the document----")
         for paragraph in result.paragraphs:
-            print(f"Found paragraph with role: '{paragraph.role}' within {paragraph.bounding_regions} bounding region")
+            print(f"Found paragraph within {paragraph.bounding_regions} bounding region")
             print(f"...with content: '{paragraph.content}'")
 
     print("----------------------------------------")

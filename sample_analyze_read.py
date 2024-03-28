@@ -103,7 +103,7 @@ def analyze_read():
     #     poller = document_intelligence_client.begin_analyze_document(
     #         "prebuilt-read",
     #         analyze_request=f,
-    # #         features=[DocumentAnalysisFeature.STYLE_FONT, DocumentAnalysisFeature.LANGUAGES] 
+    #         features=[DocumentAnalysisFeature.LANGUAGES],
     # # If you analyze a document for style and language, remove the comment marker (#) at the beginning of the line above.
     #         content_type="application/octet-stream",
     #     )
@@ -115,17 +115,6 @@ def analyze_read():
     if result.languages is not None:
         for language in result.languages:
             print(f"Language code: '{language.locale}' with confidence {language.confidence}")
-
-    # Detect styles.
-    print("----Styles detected in the document----")
-    if result.styles:
-        for style in result.styles:
-            if style.is_handwritten:
-                print("Found the following handwritten content: ")
-                print(",".join([result.content[span.offset : span.offset + span.length] for span in style.spans]))
-            if style.font_style:
-                print(f"The document contains '{style.font_style}' font style, applied to the following text: ")
-                print(",".join([result.content[span.offset : span.offset + span.length] for span in style.spans]))
     
     # To learn the detailed concept of "bounding polygon" in the following content, visit: https://aka.ms/bounding-region
     # Analyze pages.

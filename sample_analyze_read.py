@@ -93,7 +93,8 @@ def analyze_read():
     # If you analyze a document in Blob Storage, you need to generate Public SAS URL, please visit: https://aka.ms/create-sas-tokens
     poller = document_intelligence_client.begin_analyze_document(
         "prebuilt-read",
-        AnalyzeDocumentRequest(url_source=formUrl)
+        AnalyzeDocumentRequest(url_source=formUrl),
+        features=[DocumentAnalysisFeature.LANGUAGES]
     )       
     
     # # If analyzing a local document, remove the comment markers (#) at the beginning of these 11 lines.
